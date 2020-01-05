@@ -1,0 +1,9 @@
+
+server:
+  port: 8743
+spring:
+  application:
+    name: event-service
+  cloud:
+    config:
+      uri: http://localhost:9876
