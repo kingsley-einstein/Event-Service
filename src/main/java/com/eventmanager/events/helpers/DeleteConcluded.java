@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 // import java.util.TimerTask;
 
+import com.eventmanager.events.client.RsvpClient;
 import com.eventmanager.events.model.Event;
 import com.eventmanager.events.repository.EventRepository;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DeleteConcluded {
   @Autowired private EventRepository repository;
+  @Autowired private RsvpClient client;
 
   @Scheduled(fixedRate = (60000 * 10))
   public void run() {
@@ -25,6 +27,7 @@ public class DeleteConcluded {
         // If event's concluding time is before current time, delete the event
         if (event.getConcludingTime().before(new Date(System.currentTimeMillis()))) {
           repository.delete(event);
+          client.deleteRsvps(event.getId());
         }
       });
     }
