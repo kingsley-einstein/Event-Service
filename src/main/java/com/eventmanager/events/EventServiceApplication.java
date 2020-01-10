@@ -13,6 +13,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -22,6 +23,11 @@ public class EventServiceApplication {
 	@Bean
 	public FeignHandler feignErrorHandler() {
 		return new FeignHandler();
+	}
+
+	@Bean
+	public RestTemplate template() {
+		return new RestTemplate();
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(EventServiceApplication.class, args);
