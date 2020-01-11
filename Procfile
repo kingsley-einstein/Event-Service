@@ -1,1 +1,1 @@
-web java -jar -Dspring.profiles.active=prod -DPORT=80 target/event-service-0.0.1-SNAPSHOT.jar
+web java -jar -Dspring.profiles.active=prod target/event-service-0.0.1-SNAPSHOT.jar
