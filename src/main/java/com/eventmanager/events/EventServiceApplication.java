@@ -1,5 +1,6 @@
 package com.eventmanager.events;
 
+import com.eventmanager.events.config.CustomFeignInterceptor;
 import com.eventmanager.events.errors.handlers.FeignHandler;
 
 // import java.util.Timer;
@@ -16,6 +17,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
+import feign.RequestInterceptor;
+
 @SpringBootApplication
 @EnableFeignClients
 @EnableEurekaClient
@@ -30,6 +33,11 @@ public class EventServiceApplication {
 	@Bean
 	public RestTemplate template() {
 		return new RestTemplate();
+	}
+
+	@Bean
+	public RequestInterceptor interceptor() {
+		return new CustomFeignInterceptor();
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(EventServiceApplication.class, args);
