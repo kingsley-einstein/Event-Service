@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(value = "auth-service", configuration = CustomFeignClientConfig.class)
+@FeignClient(name = "auth-service", configuration = CustomFeignClientConfig.class)
 public interface AuthClient {
   @GetMapping("/api/v1/auth")
   public Response<Auth> getLoggedUser(@RequestHeader(value = "Authorization") String authorization);
