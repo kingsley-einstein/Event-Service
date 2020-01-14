@@ -26,7 +26,7 @@ public class EventServiceApplication {
 		return new FeignHandler();
 	}
 
-	@LoadBalanced
+	// @LoadBalanced
 	@Bean
 	public RestTemplate template() {
 		return new RestTemplate();
